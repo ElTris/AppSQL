@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.tr.appsql">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/bdistribuidas"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/bdistribuidas"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Login"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainOptions"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddAdmin"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddAlumno"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainReport"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainCustomReport"
+            android:screenOrientation="portrait" />
+        <activity android:name=".LectorPdfGeneral"></activity>
+    </application>
+
+</manifest>

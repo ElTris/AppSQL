@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddAlumno">
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:padding="20dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="25sp"
+                android:fontFamily="sans-serif"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="AGREGAR ALUMNO"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:id="@+id/pic_alumno"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/std"
+                android:backgroundTint="@color/btnoptions"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/inputMatriculaAlumno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/edtmatriculaAlumno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="INGRESAR MATRICULA"
+                    android:textAlignment="center"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:inputType="number"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/inputnombreAlumno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/edtnombreAlumno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="INGRESAR NOMBRE"
+                    android:textAlignment="center"
+                    android:maxLength="30"
+                    android:maxLines="1"
+                    android:inputType="textAutoComplete"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/inputpaternoAlumno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/edtpaternoAlumno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="INGRESAR APELLIDO PATERNO"
+                    android:textAlignment="center"
+                    android:maxLength="30"
+                    android:maxLines="1"
+                    android:inputType="textAutoComplete"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/inputmaternoAlumno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/edtmaternoAlumno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="INGRESAR APELLIDO MATERNO"
+                    android:textAlignment="center"
+                    android:maxLength="30"
+                    android:maxLines="1"
+                    android:inputType="textAutoComplete"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textedos"
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="ESTADO DE RESIDENCIA:"/>
+            <Spinner
+                android:id="@+id/spEstados"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"/>
+
+
+            <TextView
+                android:id="@+id/textmunicipio"
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="MUNICIPIO DE RESIDENCIA:"/>
+            <Spinner
+                android:id="@+id/spMunicipio"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"/>
+
+
+            <TextView
+                android:id="@+id/textlocalidades"
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="LOCALIDAD DE RESIDENCIA:"/>
+            <Spinner
+                android:id="@+id/spLocalidades"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"/>
+
+            <Button
+                android:id="@+id/btnAgregarAlumno"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:backgroundTint="@color/colorAccent"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:textColor="@color/BlackINwithe"
+                android:text="AGREGAR"/>
+
+        </LinearLayout>
+        
+    </ScrollView>
+
+</LinearLayout>

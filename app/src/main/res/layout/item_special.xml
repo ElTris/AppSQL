@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:layout_gravity="center"
+    android:textSize="15dp"
+    android:textColor="@color/BlackINwithe"
+    android:background="@drawable/special_spinners"
+    android:padding="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android" />
