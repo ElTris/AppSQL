@@ -10,12 +10,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 public class ConectionDB {
+
+
     private String userName = "sa";
     private String password = "12345";
     private String ip="192.168.2.71";
     private String ip2="192.168.2.35";
     private String url = "jdbc:jtds:sqlserver://"+ip+":1433/UNIVERSIDADPOLITECNICA_UPP;";
     private String url2 ="jdbc:jtds:sqlserver://"+ip2+":1433/UNIVERSIDADPOLITECNICA_UPP;";
+
+
     private String EstadoConvert="",MunicipioConvert="",LocalidadConvert="";
     public boolean conexion=false;
     public boolean admin=false;
@@ -30,63 +34,109 @@ public class ConectionDB {
     Statement st;
     ResultSet rs;
 
+    /**
+     *ESTA FUNCIÓN SIRVE PARA TOMAR EL VALOR DE 'EstadosSpinner' Y REGRESARLO  A LA VARIABLE
+     * */
     public String getEstadosSpinner() {
         return EstadosSpinner;
     }
 
+    /**
+     *ESTA FUNCIÓN SIRVE PARA TOMAR EL VALOR DE 'MunicipiosSpinner' Y REGRESARLO  A LA VARIABLE
+     * */
     public String getMunicipiosSpinner() {
         return MunicipiosSpinner;
     }
 
+    /**
+     *ESTA FUNCIÓN SIRVE PARA TOMAR EL VALOR DE 'LocalidadesSpinner' Y REGRESARLO  A LA VARIABLE
+     * */
     public String getLocalidadesSpinner() {
         return LocalidadesSpinner;
     }
 
+    /**
+     *ESTA FUNCIÓN SIRVE PARA ASIGNAR EL VALOR A 'EstadosSpinner' CUANDO LA FUNCION SEA INSTANCIADA Y UTILIZADA
+     * */
     public void setEstadosSpinner(String valor){
         this.EstadosSpinner=valor;
     }
 
+    /**
+     *ESTA FUNCIÓN SIRVE PARA ASIGNAR EL VALOR A 'MunicipiosSpinner' CUANDO LA FUNCION SEA INSTANCIADA Y UTILIZADA
+     * */
     public void setMunicipiosSpinner(String valor){
         this.MunicipiosSpinner=valor;
     }
 
+    /**
+     *ESTA FUNCIÓN SIRVE PARA ASIGNAR EL VALOR A 'LocalidadesSpinner' CUANDO LA FUNCION SEA INSTANCIADA Y UTILIZADA
+     * */
     public void setLocalidadesSpinner(String valor){
         this.LocalidadesSpinner=valor;
     }
 
+    /**
+     *ESTA FUNCIÓN SIRVE PARA ASIGNAR EL VALOR A 'confirmationInsert' CUANDO LA FUNCION SEA INSTANCIADA Y UTILIZADA
+     * DESCRIPCION: ESTA FUNCION ES USADA PARA CONFIRMAR SI LOS DATOS SE HAN INSERTADO CORRECTAMENTE ASIGNANDO UN VALOR
+     * (DEPENDERA DEL VALOR QUE SEA ASIGNADO DURANTE SU INSTANCIACIÓN) BOOLEANO
+     * */
     public void  setConfirmationInsert(boolean val){
 
         this.confirmationInsert=val;
     }
 
+    /**
+     *ESTA FUNCIÓN SIRVE PARA ASIGNAR EL VALOR A 'confirmationNick' CUANDO LA FUNCION SEA INSTANCIADA Y UTILIZADA
+     * DESCRIPCION: ESTA FUNCION ES USADA PARA CONFIRMAR SI EL ADMINISTADOR EXISTE
+     * */
     public void setConfirmationNick(boolean res){
 
         this.confirmationNick=res;
     }
 
+    /**
+     *ESTA FUNCIÓN SIRVE PARA ASIGNAR EL VALOR A 'confirmationAlumno' CUANDO LA FUNCION SEA INSTANCIADA Y UTILIZADA
+     * DESCRIPCION: ESTA FUNCION ES USADA PARA CONFIRMAR SI EL ALUMNO EXISTE
+     * */
     public void setConfirmationAlumno(boolean val){
 
         this.confirmationAlumno=val;
     }
 
+    /**
+     *ESTA FUNCION ES USADA PARA CONFIRMAR QUE UN ALUMNO FUE ENCONTRADO
+     */
     public void setAdmin(boolean result){
 
         this.admin=result;
     }
 
+    /**
+     *ESTA FUNCION SIRVE PARA TOMAR EL VALOR DE LA VARIABLE 'admin'
+     */
     public boolean getAdmin(){
         return this.admin;
     }
 
+    /**
+     * VARIABLE QUE SIRVE PARA CONFIRMAR SI HAY CONEXION DE LA APLICACION A LOS SERVIDORES
+     */
     public void setConexion(boolean res){
 
         this.conexion=res;
     }
 
+    /**
+     * FUNCION QUE SIRVE PARA TOMAR EL VALOR DE LA VARIABLE 'conexion'
+     * */
     public boolean getConexion(){
         return this.conexion;
     }
 
+    /**
+     * ESTA FUNCION REALIZA LA CONEXION A SERVIDOR 1 (MAQUINA FISICA 'DONDE SE ENCUENTRA SQL SERVERORIGINAL')
+     * */
     public Connection conectionServer1() {
         Connection connection = null;
         try {
@@ -102,6 +152,9 @@ public class ConectionDB {
         return connection;
     }
 
+    /**
+     * ESTA FUNCION REALIZA LA CONEXION A SERVIDOR 2 (MAQUINA VIRTUAL 'DONDE SE ENCUENTRA SQL SERVERVIRTUAL')
+     * */
     public Connection conectionServer2() {
         Connection connection = null;
         try {
@@ -117,6 +170,10 @@ public class ConectionDB {
         return connection;
     }
 
+    /**
+     * ESTA FUNCIÓN HACE UNA PETICIÓN A LOS SERVIDORES PARA VERIFICAR QUE EL USUARIO EXISTE DE ACUERDO A LOS PARAMETROS
+     * INGRESADOS
+     * */
     public void queryAdminServers(String nombre,String pass){
             conectionServer1();
             if (this.conexion){
@@ -148,6 +205,10 @@ public class ConectionDB {
             }
     }
 
+    /**
+     * ESTA FUNCIÓN HACE UNA PETICIÓN A LOS SERVIDORES PARA VERIFICAR QUE NO EXISTE UN ADMINISTRADOR EN LA BD
+     * CON LA MISMA MATRICULA PARA EVITAR ERRORES DE CLAVES DENTRO DEL SERVIDOR
+     * */
     public void checkInRecordsAdmin(String nick){
         conectionServer1();
         if (this.conexion){
@@ -181,6 +242,10 @@ public class ConectionDB {
 
     }
 
+    /**
+     * ESTA FUNCIÓN HACE UNA PETICIÓN A LOS SERVIDORES PARA VERIFICAR QUE NO EXISTE UN ALUMNO EN LA BD
+     * CON LA MISMA MATRICULA PARA EVITAR ERRORES DE CLAVES DENTRO DEL SERVIDOR
+     * */
     public void checkInRecordsAlumnos(String Matricula){
         conectionServer1();
         if (this.conexion){
@@ -211,6 +276,9 @@ public class ConectionDB {
         }
     }
 
+    /**
+     * ESTA FUNCION SIRVE PARA INSERTAR UN ADMINISTRADOR CON TODOS LOS PARAMETRO EQUERIDOS
+     */
     public void insertAdmin(String nick,String nombre,String paterno, String materno, String password){
         conectionServer1();
         if (this.conexion){
@@ -238,6 +306,9 @@ public class ConectionDB {
         }
     }
 
+    /**
+     * ESTA FUNCION SIRVE PARA INSERTAR UN ALUMNO CON TODOS LOS PARAMETRO EQUERIDOS
+     */
     public void insertarAlumno(String matricula,String nombre,String paterno,String materno,String estado,String municipio,String localidad){
         conectionServer1();
         if (this.conexion){
@@ -267,6 +338,9 @@ public class ConectionDB {
 
     }
 
+    /**
+     * ESTA FUNCION RETORNA EL ID DEL ESTADO SELECCIONADO Y LO INSERTA EN LA BASE DE DATOS DE LOS SERVIDORES
+     * */
     public String setClaveEstadoQuery(){
         /***
          * Este metodo es usado para tomar la clave primaria de los estados e insertarla dentro de la variable
@@ -305,6 +379,9 @@ public class ConectionDB {
         return idEstado;
     }
 
+    /**
+     * ESTA FUNCION RETORNA EL ID DEL MUNICIPIO SELECCIONADO Y LO INSERTA EN LA BASE DE DATOS DE LOS SERVIDORES
+     * */
     public String setClaveMunicipioQuery(){
         conectionServer1();
         if (this.conexion){
@@ -338,6 +415,9 @@ public class ConectionDB {
         return idMunicipios;
     }
 
+    /**
+     * ESTA FUNCION RETORNA EL ID DE LOCALIDAD SELECCIONADO Y LO INSERTA EN LA BASE DE DATOS DE LOS SERVIDORES
+     * */
     public String setClaveLocalidadesQuery(){
         conectionServer1();
         if (this.conexion){
@@ -371,6 +451,9 @@ public class ConectionDB {
         return idLocalidad;
     }
 
+    /**
+     * TOMA TODOS LOS ESTADOS DE LA BASE DE DATOS DE CUALQUIERA DE LOS 2 SERVIDORES
+     * */
     public ArrayList<String> getDataEstados(){
         ArrayList<String> dataEstados= new ArrayList<>();
         conectionServer1();
@@ -406,6 +489,9 @@ public class ConectionDB {
         return dataEstados;
     }
 
+    /**
+     * TOMA TODOS LOS MUNICIPIOS DE LA BASE DE DATOS DE CUALQUIERA DE LOS 2 SERVIDORES
+     * */
     public ArrayList<String> getDataMunicipios(){
         ArrayList<String> dataMunicipios= new ArrayList<>();
         conectionServer1();
@@ -441,6 +527,9 @@ public class ConectionDB {
         return dataMunicipios;
     }
 
+    /**
+     * TOMA TODOS LAS LOCALIDADES DE LA BASE DE DATOS DE CUALQUIERA DE LOS 2 SERVIDORES
+     * */
     public ArrayList<String> getDataLocalidades(){
         ArrayList<String> dataLocalidades= new ArrayList<>();
         conectionServer1();
@@ -476,6 +565,9 @@ public class ConectionDB {
         return dataLocalidades;
     }
 
+    /**
+     * OBTIENE EL NOMBRE DEL ESTADO SELECCIONADO PARA INGRESAR EN EL REPORTE
+     * */
     public String obtenerNombreEstado(String id){
         String nombre="";
         conectionServer1();
@@ -511,6 +603,10 @@ public class ConectionDB {
         return nombre;
     }
 
+
+    /**
+     * OBTIENE EL NOMBRE DEL MUNICIPIO SELECCIONADO PARA INGRESAR EN EL REPORTE
+     * */
     public String obtenerNombreMunicipio(String idEdo,String idMunicipio){
         String nombre="";
         conectionServer1();
@@ -546,6 +642,9 @@ public class ConectionDB {
         return nombre;
     }
 
+    /**
+     * OBTIENE EL NOMBRE DEL LOCALIDAD SELECCIONADO PARA INGRESAR EN EL REPORTE
+     * */
     public String obtenerNombreLocalidad(String idEdo,String idMunicipio,String idLocalidad){
         String nombre="";
         conectionServer1();
@@ -581,6 +680,10 @@ public class ConectionDB {
         return nombre;
     }
 
+
+    /**
+     * OBTIENE UN ARREGLO DE LISTAS QUE SERAN UTILIZADOS PARA GENERAR UN REPORTE
+     * */
     public ArrayList<String[]> reportDataGeneral(){
         ArrayList<String[]> dataReportOne= new ArrayList<>();
         conectionServer1();

@@ -34,6 +34,9 @@ public class MainReport extends AppCompatActivity {
         Date date = new Date();
 
         fecha = dateFormat.format(date);
+        /**
+         * CUANDO EL BOTON ES PRECIONADO GENERA UN PDF LLAMANDO A LAS CLASES ConectionDB y GeneradorPdf
+         * */
         reporte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +61,9 @@ public class MainReport extends AppCompatActivity {
         });
     }
 
+    /**
+     * SOLICITANDO PERMISOS DE ESCRITURA AL DISPOSITIVO Y USUARIO
+     * */
     private void permisoWrite(){
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,},1000);

@@ -15,15 +15,24 @@ import java.io.File;
 
 public class LectorPdfGeneral extends AppCompatActivity {
 
+    /**
+     * CREACION DE VARIABLE A INICIALIZACION DE LAS MISMAS
+     * */
     private File file;
     private PDFView pdfView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //LA VIASUALIZACION DEL PDF SERÁ REALIZADA EN PANTALLA COMPLETA
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_lector_pdf_general);
+
+        /**
+         * ESPESIFICA LAS CARACTERISTICAS QUE TENDRA EL LECTO DEL PDF
+         * */
         pdfView= findViewById(R.id.viewerPDF);
         permisoRead();
         Bundle bundle=getIntent().getExtras();
@@ -37,6 +46,11 @@ public class LectorPdfGeneral extends AppCompatActivity {
                 .enableAntialiasing(true)
                 .load();
     }
+
+    /**
+     * VERIFICACION DE PERMISOS OTORGADOS POR EL USUARIO Y COMPROBACION DE ACCESO A LECTURA INTERNA Y EXTENA
+     * DEL DISPOSITIVO
+     * **/
     private void permisoRead(){
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,},1000);

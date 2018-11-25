@@ -26,6 +26,8 @@ import java.sql.DriverManager;
 import java.util.regex.Pattern;
 
 public class Login extends AppCompatActivity {
+
+
     ImageView pictus;
     Button inside;
     Animation animation;
@@ -37,11 +39,12 @@ public class Login extends AppCompatActivity {
     SharedPreferences savepreferencias;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
         animation = AnimationUtils.loadAnimation(this, R.anim.blink);
         pictus = findViewById(R.id.userphoto);
         pictus.startAnimation(animation);

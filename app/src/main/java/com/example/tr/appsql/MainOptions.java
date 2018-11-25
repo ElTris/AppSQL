@@ -20,24 +20,24 @@ public class MainOptions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_options);
-        /*
-        * declaration of elements used in the interface
+        /**
+        * DECLARACION DE ELEMENTOS USADOS EN LA INTERFACE
         * */
         menus=findViewById(R.id.menutext);
         slides= AnimationUtils.loadAnimation(this,R.anim.slide_down);
         btnAdmin= findViewById(R.id.insertAdmin);
         btnAlumno=findViewById(R.id.insertAlumnos);
         btnReporte=findViewById(R.id.report);
-        /*
-        * in the part below of us, we have some declarations of animations buttons
+        /**
+        * INICIO DE ANIMACIONES A LOS ELEMENTOS ABAJO MOSTRADOS
         * */
         menus.startAnimation(slides);
         btnAdmin.startAnimation(slides);
         btnAlumno.startAnimation(slides);
         btnReporte.startAnimation(slides);
 
-        /*
-        * some methods implemented in the interface for clicked objects (Buttons)
+        /**
+        * CUANDO EL BOTON ES PRECIONADO INICIA UNA NUEVA ACTIVIDAD 'AddAdmin'
         * */
         btnAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +47,9 @@ public class MainOptions extends AppCompatActivity {
             }
         });
 
+        /**
+         * CUANDO EL BOTON ES PRECIONADO INICIA UNA NUEVA ACTIVIDAD 'AddAlumno'
+         * */
         btnAlumno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,6 +59,9 @@ public class MainOptions extends AppCompatActivity {
             }
         });
 
+        /**
+         * CUANDO EL BOTON ES PRECIONADO INICIA UNA NUEVA ACTIVIDAD 'MainReport'
+         * */
         btnReporte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

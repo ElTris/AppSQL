@@ -23,6 +23,10 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class AddAlumno extends AppCompatActivity {
+    /**
+     * ASIGNACION DE VARIABLES QUE SERÁN UTILIZADAS POSTERIOR MENTE
+     * */
+
     Animation blink;
     ImageView picture_one;
     Pattern numericos=Pattern.compile("[0-9]+");
@@ -36,6 +40,9 @@ public class AddAlumno extends AppCompatActivity {
     Button agregarAlumno;
     public String EdoString,MunString,LocString;
     boolean bmatriculaAlumno=false,bnombreAlumno=false,bpaternoALumno=false,bmaternoAlumno=false,bestados=false,bmunicipios=false,blocalidades=false;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,13 +64,26 @@ public class AddAlumno extends AppCompatActivity {
 
         picture_one.startAnimation(blink);
 
-
+        /**
+         * VERIFICACION DE CONEXION A INTERNET O A CUALQUIER RED
+         * */
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
+        /**
+         * COMPROBAMOS LA INFORMACION DE LA RED SÍ ESTÁ DISPONIBLE SE REALIZARA LO QUE ESTA DENTRO DEL IF
+         * */
         if (networkInfo != null && networkInfo.isConnected()) {
-        getEstadosSpinner();
+            /**
+             *
+             * SE CARGA EL METODO getEstadosSpinner() EL CUAL LLENARA EL SPINNER CON LOS DATOS CORRESPONDIENTES
+             * DE LOS ESTADOS
+             * **/
+            getEstadosSpinner();
 
+            /**
+             *SELECCIONA UN ESTADO DEL SPINNER CUANDO ESTE ES CARGADO INSTANTANEAMENTE
+             * */
         Estadossp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -78,6 +98,9 @@ public class AddAlumno extends AppCompatActivity {
             }
         });
 
+            /**
+             *SELECCIONA UN MUNICIPIO DEL SPINNER CUANDO ESTE ES CARGADO INSTANTANEAMENTE
+             * */
         Municipiossp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -92,6 +115,9 @@ public class AddAlumno extends AppCompatActivity {
             }
         });
 
+            /**
+             *SELECCIONA UNA LOCALIDAD DEL SPINNER CUANDO ESTE ES CARGADO INSTANTANEAMENTE
+             * */
         Localidadessp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -109,6 +135,11 @@ public class AddAlumno extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Verifique conexión a internet",Toast.LENGTH_SHORT).show();
         }
 
+
+        /**
+         * AL PRECIONAR EL BOTON, SE COMPRUEBA LA CONEXION A INTERNET O A UNA RED Y SE COMPRUEBA QUE LOS DATOS E
+         * INFORMACION SEAN CORRECTOS PARA INSERTARSE A LA BASE DE DATOS
+         * **/
         agregarAlumno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -186,6 +217,9 @@ public class AddAlumno extends AppCompatActivity {
     }
 
     public void getEstadosSpinner(){
+        /***
+         * METODO ENCARGADO DE LLENAR EL SPINNER PERTENECIENTE A ESTADOS UNA VEZ QUE SEA SELECCIONADO UN ITEM DE SPINNER
+         * */
         ArrayAdapter<CharSequence> adapterEstados= new ArrayAdapter(this,R.layout.item_special,conectionDB_one.getDataEstados());
         Estadossp.setAdapter(adapterEstados);
     }
@@ -197,6 +231,9 @@ public class AddAlumno extends AppCompatActivity {
         Municipiossp.setAdapter(adapterMunicipios);
     }
     public void getLocalidadesSpinner(){
+        /***
+         * METODO ENCARGADO DE LLENAR EL SPINNER PERTENECIENTE A LOCALIDADES UNA VEZ QUE SEA SELECCIONADO UN ITEM DE SPINNER
+         * */
         ArrayAdapter<CharSequence> adapterLocalidades= new ArrayAdapter(this,R.layout.item_special,conectionDB_one.getDataLocalidades());
         Localidadessp.setAdapter(adapterLocalidades);
     }

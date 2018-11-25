@@ -18,6 +18,10 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 public class GeneradorPdf {
+
+    /**
+     * ASIGNACION Y CREACION DE VARIABLES
+     * */
     private Context context;
     private File pdfFile;
     private Document document;
@@ -28,10 +32,16 @@ public class GeneradorPdf {
     private Font ftext= new Font(Font.TIMES_ROMAN,15,Font.BOLD);
     private Font fHighText= new Font(Font.TIMES_ROMAN,15,Font.BOLD);
 
+    /**
+     * CONSTRUCTOR DE LA CLASE GeneradorPdf ENCARGADO DE PASAR EL CONTEXTO DE LA INFORMACION A UNA NUEVA ACTIVITY
+     * */
     public GeneradorPdf(Context context) {
         this.context=context;
     }
 
+    /**
+     * FUNCION ENCARGADA DE LOS PARAMETROS DE DOCUMENTO (TIPO DE HOJA) Y ENCARGADA DE ABRIR EL DOCUMENTO
+     * */
     public void openDocumento(){
         createFile();
         try{
@@ -44,6 +54,9 @@ public class GeneradorPdf {
         }
     }
 
+    /**
+     * FUNCION ENCARGADA DE CREAR CARPETA Y DOCUMENTO EN PDF
+     * */
     private void createFile(){
         File folder=new File(Environment.getExternalStorageDirectory().toString(),"/REPORTES BD DISTRIBUIDAS");
         if (folder.exists()){
@@ -56,12 +69,18 @@ public class GeneradorPdf {
         }
     }
 
+    /**
+     * FUNCION ENCARGADA DE AGREGAR METADATOS AL ARCHIVO (TUTILO,SUBTEMA, AUTOR)
+     * */
     public void addMetaData(String title,String subject,String author){
         document.addTitle(title);
         document.addSubject(subject);
         document.addAuthor(author);
     }
 
+    /**
+     * FUNCION ENCARGADA DE AGREGAR TITULO, SUBTITULO, FECHA
+     * */
     public void addTitles(String title,String subTitle, String Date){
         try {
             paragraph = new Paragraph();
@@ -77,16 +96,25 @@ public class GeneradorPdf {
         }
     }
 
+    /**
+     * FUNCION CREADA PARA CERRAR UN DOCUMENTO ABIERTO
+     * */
     public void closeDocument(){
 
         document.close();
     }
 
+    /**
+     * FUNCION PARA AGREGAR UN NUEVO PARRAFO JUSTIFICADO
+     * */
     public void addChildP(Paragraph childParagraph){
         childParagraph.setAlignment(Element.ALIGN_JUSTIFIED);
         paragraph.add(childParagraph);
     }
 
+    /**
+     * FUNCION QUE AGREGA UN NUEVO PARRAFO A LA HOJA
+     **/
     public void addParagraph(String text){
         try {
             paragraph = new Paragraph(text, ftext);
@@ -99,6 +127,9 @@ public class GeneradorPdf {
         }
     }
 
+    /**
+     * FUNCION QUE CREA UNA TABLA LA CUAL CONTIENE INFORMACION EN FORMA DE ARREGLOS DE LISTAS
+     * */
     public void createTable(String[] header, ArrayList<String[]> clients){
         try {
             paragraph= new Paragraph();
@@ -131,6 +162,10 @@ public class GeneradorPdf {
         }
     }
 
+
+    /***
+     * FUNCION QUE PERMITE VISUALISAR EL PDF CREADO EN OTRA ACTIVITY
+     * */
     public void ViewPdf(){
         Intent intent= new Intent(context, LectorPdfGeneral.class);
         intent.putExtra("path",pdfFile.getAbsolutePath());
